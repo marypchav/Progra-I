@@ -31,7 +31,7 @@ const bdSettings = {
   }
 };
 
-async function conectarBD(id = null) {
+async function mostrarTabla(id = null) {
   try {
     let pool = await sql.connect(bdSettings);
     console.log('Ya te conectaste al server');
@@ -46,10 +46,33 @@ async function conectarBD(id = null) {
     let resultado = await solicitud.execute('dbo.spDiccionarioEmpleados');
 
     console.log('Datos: ', resultado.recordset);
+
   } catch (error) {
     console.log('Error al conectar: ', error);
   }
 }
 
+// Funciones UI
 
-conectarBD();
+// insertar
+async function insertarEmpleado(nombre, salario) {
+  try {
+    let pool = await sql.connect(bdSettings);
+    console.log('Ya te conectaste al server');
+
+    let resultado = await pool.request()
+      .input('Nombre', sql.VarChar, nombre)
+      .input('Salario', sql.Money, salario)
+      .execute('spInsertarEmpleado');
+
+    console.log('Output del server: ', resultado.recordset[0].Mensaje);
+    return { succes: true };
+  
+  } catch (error) {
+    console.error('Error al ejecutar el SP: ', error);
+    return { succes: false, error: error.message}
+  }
+}
+
+insertarEmpleado('Sahora García', 500000.00);
+mostrarTabla();
