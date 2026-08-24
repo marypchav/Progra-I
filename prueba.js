@@ -1,3 +1,4 @@
+/*
 const http = require('node:http');
 
 const hostname = '127.0.0.1';
@@ -14,3 +15,32 @@ const server = http.createServer((req, res) => {
 server.listen(port, hostname, () => {
   console.log(`aquí está tu server bella un abrazo http://${hostname}:${port}/`);
 });
+*/
+
+const sql = require('mssql');
+
+const bdSettings = {
+  user: 'sa',
+  password: 'basesI',
+  server: '192.168.5.192',
+  database: 'BDEmpleados',
+  options: {
+    encrypt: true,
+    trustServerCertificate: true
+  }
+};
+
+async function conectarBD() {
+  try {
+    let pool = await sql.connect(bdSettings);
+    console.log('Ya te conectaste al server');
+
+    //probar
+    let resultado = await pool.request().query('SELECT * FROM dbo.Empleado');
+    console.log(resultado.recordsets);
+  } catch (error) {
+    console.log('Error al conectar: ', error);
+  }
+}
+
+conectarBD();
