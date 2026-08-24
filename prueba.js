@@ -18,6 +18,7 @@ server.listen(port, hostname, () => {
 */
 
 const sql = require('mssql');
+const { default: Null } = require('tedious/lib/data-types/null');
 
 const bdSettings = {
   user: 'sa',
@@ -30,17 +31,25 @@ const bdSettings = {
   }
 };
 
-async function conectarBD() {
+async function conectarBD(id = null) {
   try {
     let pool = await sql.connect(bdSettings);
     console.log('Ya te conectaste al server');
 
-    //probar
-    let resultado = await pool.request().query('SELECT * FROM dbo.Empleado');
-    console.log(resultado.recordsets);
+    //probar con sp
+    let solicitud = pool.request();
+
+    if (id !== null) {
+      solicitud.input('EmpleadoId', sql.Int, id);
+    } 
+    console.log('...Ejecutando SP...')
+    let resultado = await solicitud.execute('dbo.spDiccionarioEmpleados');
+
+    console.log('Datos: ', resultado.recordset);
   } catch (error) {
     console.log('Error al conectar: ', error);
   }
 }
+
 
 conectarBD();
