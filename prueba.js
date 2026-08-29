@@ -15,10 +15,10 @@ const bdSettings = {
 
 // FUNCIONES UI
 
-// obtener tabla
+//Obtener tabla
 async function obtenerTabla() {
-  //la renombré a "obtenerTabla" para que hiciera match con el nombre del sp
   try {
+
     let pool = await sql.connect(bdSettings);
     console.log('Ya te conectaste al server'); //Avisa que sí se pudo entrar al server
 
@@ -29,12 +29,14 @@ async function obtenerTabla() {
     return { succes: true };
 
   } catch (error) {
+
     console.error('Error al ejecutar el SP', error);
     return { succes: false, error: error.message}
+
   }
 }
 
-// insertar empleado
+//Insertar empleado
 async function insertarEmpleado(nombre, salario) {
   try {
 
@@ -58,7 +60,32 @@ async function insertarEmpleado(nombre, salario) {
     console.error('Error al ejecutar el SP'); //Error general
     return { succes: false, error: error.message }
 
-    }
+  }
 }
 
-insertarEmpleado('Mary Chavarría', 200000.00)
+//Validación de entrada insertarEmpleado(nombre, salario)
+function validarIE(nombre, salario) {
+
+  const nombreFormato = /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?: [A-Za-zÁÉÍÓÚáéíóúÑñ]+)*$/; //Formato alfabético a seguir del nombre + apellido
+
+  if (!nombre || nombre.trim() === "") { //Si nombre = null
+    console.log('Por favor, escriba el nombre');
+    return;
+  }
+  if (!salario) { //Si salario = null
+    console.log('Por favor, digite el salario');
+    return;
+  }
+  if (nombre.trim() !== "-" && !nombreFormato.test(nombre.trim())) { //Si el nombre no sigue el formato alfabético dado con anterioridad ó no es "-"
+    console.log('El nombre debe de contener solo valores alfabéticos, o ser "-"');
+    return;
+  }
+  if (typeof salario !== "number" || !Number.isFinite(salario)) { //Si el salario no es de tipo número ó no es un número finito válido
+    console.log('El salario debe de ser un valor monetario válido');
+    return;
+  }
+  
+  insertarEmpleado(nombre, salario); //Inserta el empleado
+
+}
+
