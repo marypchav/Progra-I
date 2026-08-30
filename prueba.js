@@ -5,7 +5,8 @@ const { default: Null } = require('tedious/lib/data-types/null');
 const bdSettings = {
   user: 'sa',
   password: 'basesI',
-  server: '192.168.5.192',
+  server: '192.168.100.58',
+  port: 1433,
   database: 'BDEmpleados',
   options: {
     encrypt: true,
@@ -55,6 +56,7 @@ async function insertarEmpleado(nombre, salario) {
 
     if (error.number === 51000) { //Error, nombre ya existente en la tabla
        console.log(error.message);
+       return { success: false, error: error.message };
     }
 
     console.error('Error al ejecutar el SP'); //Error general
@@ -88,4 +90,5 @@ function validarIE(nombre, salario) {
   insertarEmpleado(nombre, salario); //Inserta el empleado
 
 }
-
+  
+obtenerTabla();
