@@ -3,5 +3,4 @@
 **Profesor: Franco Quirós**
 
 ### PRIMERA TAREA PROGRAMADA
-Estudiantes: Estefannía Portuguéz 
-             Mary Paz Chavarría
+Estudiantes: Estefannía Portuguéz - Mary Paz Chavarría
