@@ -145,6 +145,19 @@ body {
 }
 
 /* ===== TABLA (index.html) ===== */
+.contenedor-tabla {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.contenedor-tabla thead th {
+  position: sticky;
+  top: 0;
+  background: #0f7a6b;
+  color: white;
+  z-index: 1;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -154,6 +167,7 @@ table {
 thead th {
   background: #14b8a0;
   color: white;
+  position: sticky;
   padding: 12px 8px;
   font-size: 0.9em;
   text-align: center;
@@ -192,3 +206,4 @@ tbody tr:last-child td {
 tbody tr:hover {
   background: #f4fcfa;
 }
+

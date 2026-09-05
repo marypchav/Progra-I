@@ -1,3 +1,4 @@
+<!-- VENTANA INSERTAR -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +15,7 @@
 
     <div class="card-body">
       <div class="campo">
-        <label for="nombre">Nombre completo</label>
+        <label for="nombre">Nombre completo: </label>
         <input type="text" id="nombre" placeholder="Ej: Juan Perez">
         <span class="error" id="error-nombre"></span>
       </div>
@@ -25,15 +26,14 @@
         <span class="error" id="error-salario"></span>
       </div>
 
-      <p id="mensaje-general" class="mensaje"></p>
+    <p id="mensaje-general" class="mensaje"></p>
 
-      <div class="botones">
-        <button id="btn-guardar" class="btn-primario">Insertar</button>
-        <button id="btn-regresar" class="btn-secundario">Regresar</button>
-      </div>
+    <div class="botones">
+      <button id="btn-guardar" class="btn-primario">Insertar</button>
+      <button id="btn-regresar" class="btn-secundario" onclick="window.location.href='index.html'">Regresar</button>
     </div>
   </div>
 
-  <script src="insertar.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

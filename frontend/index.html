@@ -1,3 +1,4 @@
+<!-- VENTANA PRINCIPAL -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,16 +14,18 @@
     </div>
 
     <div class="card-body">
-      <table>
-        <thead>
-          <tr><th>id</th><th>Nombre</th><th>Salario</th></tr>
-        </thead>
-        <tbody id="tabla-empleados">
-          <!-- las filas se llenan con JS -->
-        </tbody>
-      </table>
+      <div class="contenedor-tabla">
+        <table>
+          <thead>
+            <tr><th>id</th><th>Nombre</th><th>Salario</th></tr>
+          </thead>
+          <tbody id="tabla-empleados">
+            <!-- las filas se llenan con JS -->
+          </tbody>
+        </table>
+      </div>
 
-      <button id="btn-insertar" class="btn-primario">Insertar</button>
+      <button id="btn-insertar" class="btn-primario" onclick="window.location.href='insertar.html'">Insertar</button>
     </div>
   </div>
 
