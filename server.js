@@ -57,7 +57,7 @@ async function insertarEmpleado(nombre, salario) {
       .execute('spInsertarEmpleado');
 
     console.log('Output del server: ', resultado.recordset[0].Mensaje); //Muestra el mensaje del SP "Empleado insertado correctamente"
-    return { succes: true };
+    return { success: true, mensaje: resultado.recordset[0].Mensaje };
   
   } catch (error) {
 
