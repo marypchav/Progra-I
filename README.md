@@ -1,5 +1,5 @@
 # Progra-I
-**Base de datos I - Instituto Tecnológico de Costa Rica**
+**Base de datos I - Instituto Tecnológico de Costa Rica -**
 **Profesor: Franco Quirós**
 
 ### PRIMERA TAREA PROGRAMADA
