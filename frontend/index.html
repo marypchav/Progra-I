@@ -6,17 +6,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="card">
-    <h1>Lista de Empleados</h1>
-    <table>
-      <thead>
-        <tr><th>id</th><th>Nombre</th><th>Salario</th></tr>
-      </thead>
-      <tbody id="tabla-empleados">
-        <!-- las filas se llenan con JS -->
-      </tbody>
-    </table>
-    <button id="btn-insertar">Insertar</button>
+  <div class="card card-ancha">
+    <div class="card-header">
+      <span class="header-icon">👥</span>
+      <h1>Lista de Empleados</h1>
+    </div>
+
+    <div class="card-body">
+      <table>
+        <thead>
+          <tr><th>id</th><th>Nombre</th><th>Salario</th></tr>
+        </thead>
+        <tbody id="tabla-empleados">
+          <!-- las filas se llenan con JS -->
+        </tbody>
+      </table>
+
+      <button id="btn-insertar" class="btn-primario">Insertar</button>
+    </div>
   </div>
 
   <script src="script.js"></script>

@@ -1,0 +1,194 @@
+/* ===== BASE ===== */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #eef1f6;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 60px;
+  margin: 0;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  width: 420px;
+  overflow: hidden;
+}
+
+.card-ancha {
+  width: 650px;
+}
+
+/* ===== HEADER (compartido por index.html e insertar.html) ===== */
+.card-header {
+  background: linear-gradient(135deg, #0f7a6b, #14b8a0);
+  color: white;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* En index.html se usó  grid para centrar el título dentro de la tarjeta ancha */
+.card-ancha .card-header {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+}
+
+.card-header .header-icon {
+  font-size: 1.6em;
+}
+
+.card-ancha .card-header .header-icon {
+  grid-column: 1;
+  font-size: 1.8em;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-header h1 {
+  font-size: 1.4em;
+  margin: 0;
+}
+
+.card-ancha .card-header h1 {
+  grid-column: 2;
+  text-align: center;
+  font-size: 1.6em;
+}
+
+.card-body {
+  padding: 24px;
+}
+
+/* ===== FORMULARIO (insertar.html) ===== */
+.campo {
+  margin-bottom: 18px;
+}
+
+.campo label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+  font-size: 0.9em;
+}
+
+.campo input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d5d8e0;
+  border-radius: 8px;
+  font-size: 1em;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: #14b8a0;
+}
+
+.error {
+  color: #d9534f;
+  font-size: 0.82em;
+  display: block;
+  min-height: 16px;
+  margin-top: 4px;
+}
+
+.mensaje {
+  font-weight: 600;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.botones {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.btn-primario,
+.btn-secundario {
+  flex: 1;
+  padding: 11px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s;
+}
+
+.btn-primario {
+  background: #14b8a0;
+  color: white;
+}
+
+.btn-secundario {
+  background: white;
+  color: #0f7a6b;
+  border: 1px solid #14b8a0;
+}
+
+.btn-primario:hover,
+.btn-secundario:hover {
+  opacity: 0.85;
+}
+
+/* ===== TABLA (index.html) ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 18px;
+}
+
+thead th {
+  background: #14b8a0;
+  color: white;
+  padding: 12px 8px;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+thead th:first-child {
+  border-top-left-radius: 8px;
+}
+
+thead th:last-child {
+  border-top-right-radius: 8px;
+}
+
+tbody td {
+  padding: 14px 8px;
+  border-bottom: 1px solid #eceef4;
+  font-size: 1em;
+  color: #2c2c2c;
+  text-align: center;
+}
+
+tbody td:nth-child(1) {
+  font-weight: 700;
+  color: #0f7a6b;
+}
+
+tbody td:nth-child(3) {
+  font-weight: 700;
+  color: #0f7a6b;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #f4fcfa;
+}
