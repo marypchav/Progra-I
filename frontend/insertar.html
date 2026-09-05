@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Insertar Empleado</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>Insertar Empleado</h1>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" placeholder="Ej: Juan Perez">
+    <span class="error" id="error-nombre"></span>
+
+    <label for="salario">Salario:</label>
+    <input type="text" id="salario" placeholder="Ej: 250000.00">
+    <span class="error" id="error-salario"></span>
+
+    <p id="mensaje-general" class="mensaje"></p>
+
+    <div class="botones">
+      <button id="btn-guardar">Insertar</button>
+      <button id="btn-regresar">Regresar</button>
+    </div>
+  </div>
+
+  <script src="insertar.js"></script>
+</body>
+</html>
