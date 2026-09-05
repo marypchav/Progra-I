@@ -1,72 +1,33 @@
-// CONSTANTES
-
-const sql = require('mssql');
-const { default: Null } = require('tedious/lib/data-types/null');
-const bdSettings = {
-  user: 'sa',
-  password: 'basesI',
-  server: '192.168.100.58',
-  port: 1433,
-  database: 'BDEmpleados',
-  options: {
-    encrypt: true,
-    trustServerCertificate: true
-  }
-};
-
+// Cosas que interactuan con el html
 // FUNCIONES UI
 
-//Obtener tabla
-async function obtenerTabla() {
-  try {
+//Cargar tabla al html
+async function cargarTabla() {
+    const respuesta = await fetch('/empleados');
+    const resultado = await respuesta.json();
 
-    let pool = await sql.connect(bdSettings);
-    console.log('Ya te conectaste al server'); //Avisa que sí se pudo entrar al server
-
-    let resultado = await pool.request() 
-      .execute('spObtenerTablaOrdenada');
-
-    console.log('Output del server: ', resultado.recordset);
-    return { succes: true };
-
-  } catch (error) {
-
-    console.error('Error al ejecutar el SP', error);
-    return { succes: false, error: error.message}
-
-  }
-}
-
-//Insertar empleado
-async function insertarEmpleado(nombre, salario) {
-  try {
-
-    let pool = await sql.connect(bdSettings);
-    console.log('Ya te conectaste al server'); //Avisa que sí se pudo entrar al server
-
-    let resultado = await pool.request()
-      .input('Nombre', sql.VarChar, nombre)
-      .input('Salario', sql.Money, salario)
-      .execute('spInsertarEmpleado');
-
-    console.log('Output del server: ', resultado.recordset[0].Mensaje); //Muestra el mensaje del SP "Empleado insertado correctamente"
-    return { succes: true };
-  
-  } catch (error) {
-
-    if (error.number === 51000) { //Error, nombre ya existente en la tabla
-       console.log(error.message);
-       return { success: false, error: error.message };
+    const tbody = document.getElementById('tabla-empleados');
+    if (!tbody) {
+        return;
     }
 
-    console.error('Error al ejecutar el SP'); //Error general
-    return { succes: false, error: error.message }
+    resultado.datos.forEach(empleado => {
+        const fila = document.createElement('tr');
 
-  }
+        fila.innerHTML = `
+            <td>${empleado.id}</td>
+            <td>${empleado.Nombre}</td>
+            <td>${empleado.Salario}</td>
+        `;
+
+        tbody.appendChild(fila);
+    });
 }
 
+cargarTabla();
+
 //Validación de entrada insertarEmpleado(nombre, salario)
-function validarIE(nombre, salario) {
+async function validarIE(nombre, salario) {
 
   const nombreFormato = /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?: [A-Za-zÁÉÍÓÚáéíóúÑñ]+)*$/; //Formato alfabético a seguir del nombre + apellido
 
@@ -87,8 +48,30 @@ function validarIE(nombre, salario) {
     return;
   }
   
-  insertarEmpleado(nombre, salario); //Inserta el empleado
+  const respuesta = await fetch('/empleados', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          nombre: nombre,
+          salario: salario
+      })
+  });
 
-}
+  const resultado = await respuesta.json();
+
+  console.log(resultado); //Inserta el empleado
+
+};
   
-obtenerTabla();
+const botonGuardar = document.getElementById('btn-guardar');
+
+if (botonGuardar) {
+    botonGuardar.addEventListener('click', () => {
+        const nombre = document.getElementById('nombre').value;
+        const salario = Number(document.getElementById('salario').value);
+
+        validarIE(nombre, salario);
+    });
+};
