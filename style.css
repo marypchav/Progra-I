@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f4f8;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 500px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+th {
+  background: #0d3d75;
+  color: white;
+  padding: 8px;
+}
+
+td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+button {
+  background: #0d3d75;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
