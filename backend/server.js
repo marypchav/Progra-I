@@ -1,11 +1,12 @@
 //Cosas para acceder el sql server
 //Abre de un solo el index.html porque es lo primero que siempre busca
+
 //CONSTANTES
 const express = require ('express');
 const sql = require('mssql');
 const app = express();
 
-app.use(express.static('.'));
+app.use(express.static('../frontend'));
 
 const { default: Null } = require('tedious/lib/data-types/null');
 const bdSettings = {
@@ -24,7 +25,7 @@ async function obtenerTabla() {
   try {
 
     let pool = await sql.connect(bdSettings);
-    console.log('Ya te conectaste al server'); //Avisa que sí se pudo entrar al server
+    console.log('Ya te conectaste al server'); //Avisa a la consola que sí se pudo entrar al server
 
     let resultado = await pool.request() 
       .execute('spObtenerTablaOrdenada');
@@ -63,11 +64,11 @@ async function insertarEmpleado(nombre, salario) {
 
     if (error.number === 51000) { //Error, nombre ya existente en la tabla
        console.log(error.message);
-       return { success: false, error: error.message };
+       return { success: false, mensaje: "Ya existe el empleado" };
     }
 
     console.error('Error al ejecutar el SP'); //Error general
-    return { succes: false, error: error.message }
+    return { success: false, error: 'Error al insertar el empleado' }
 
   }
 }

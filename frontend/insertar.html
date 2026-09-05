@@ -1,0 +1,39 @@
+<!-- VENTANA INSERTAR -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Insertar Empleado</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <span class="header-icon">👤➕</span>
+      <h1>Insertar Empleado</h1>
+    </div>
+
+    <div class="card-body">
+      <div class="campo">
+        <label for="nombre">Nombre completo: </label>
+        <input type="text" id="nombre" placeholder="Ej: Juan Perez">
+        <span class="error" id="error-nombre"></span>
+      </div>
+
+      <div class="campo">
+        <label for="salario">Salario mensual</label>
+        <input type="text" id="salario" placeholder="Ej: 250000.00">
+        <span class="error" id="error-salario"></span>
+      </div>
+
+    <p id="mensaje-general" class="mensaje"></p>
+
+    <div class="botones">
+      <button id="btn-guardar" class="btn-primario">Insertar</button>
+      <button id="btn-regresar" class="btn-secundario" onclick="window.location.href='index.html'">Regresar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
