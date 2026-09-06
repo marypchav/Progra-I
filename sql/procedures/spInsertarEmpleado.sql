@@ -2,20 +2,44 @@ USE BDEmpleados
 GO
 
 CREATE OR ALTER PROCEDURE [dbo].[spInsertarEmpleado]
-	@Nombre VARCHAR(128)
-	, @Salario MONEY
+	@Nombre VARCHAR(128),
+	@Salario MONEY
 AS
 BEGIN
 	SET NOCOUNT ON;
 
-	IF EXISTS (SELECT 1 FROM dbo.Empleado WHERE Nombre = @Nombre)
-	BEGIN
-		;THROW 51000, 'Ya existe el empleado', 1;
-	END
+	BEGIN TRY
 
-	INSERT INTO dbo.Empleado(Nombre, Salario)
-	VALUES (@Nombre, @Salario);
+		IF EXISTS
+		(
+			SELECT 1
+			FROM dbo.Empleado AS E
+			WHERE E.Nombre = @Nombre
+		)
+		BEGIN
+			;THROW 51000, 'Ya existe el empleado', 1; -- Validar que no exista otro empleado con el mismo nombre
+		END
 
-	SELECT 'Empleado insertado correctamente' AS Mensaje;
+		INSERT INTO dbo.Empleado --Insertar el nuevo empleado
+		(
+			Nombre,
+			Salario
+		)
+		VALUES
+		(
+			@Nombre,
+			@Salario
+		);
+
+		SELECT 
+			'Empleado insertado correctamente' AS Mensaje;
+	
+	END TRY
+    BEGIN CATCH
+
+        THROW; -- Devolver el error generado durante la ejecución.
+
+    END CATCH;
+
 END
 GO
