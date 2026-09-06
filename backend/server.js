@@ -7,6 +7,7 @@ const sql = require('mssql');
 const app = express();
 
 app.use(express.static('../frontend'));
+app.use(express.json());
 
 const { default: Null } = require('tedious/lib/data-types/null');
 const bdSettings = {
@@ -28,15 +29,15 @@ async function obtenerTabla() {
     console.log('Ya te conectaste al server'); //Avisa a la consola que sí se pudo entrar al server
 
     let resultado = await pool.request() 
-      .execute('spObtenerTablaOrdenada');
+      .execute('dbo.spObtenerTablaOrdenada');
 
     console.log('Output del server: ', resultado.recordset);
-    return { succes: true , datos: resultado.recordset};
+    return { success: true , datos: resultado.recordset};
 
   } catch (error) {
 
     console.error('Error al ejecutar el SP', error);
-    return { succes: false, error: error.message}
+    return { success: false, error: error.message}
 
   }
 };
@@ -72,8 +73,6 @@ async function insertarEmpleado(nombre, salario) {
 
   }
 }
-
-app.use(express.json());
 
 app.post('/empleados', async (req, res) => {
     const { nombre, salario } = req.body;
