@@ -4,7 +4,7 @@
 ### PRIMERA TAREA PROGRAMADA
 Estudiantes: 
 Estefannía Portuguez Víquezz - 2024800621 // 
-Mary Paz Chavarría Castillo - 
+Mary Paz Chavarría Castillo - 2023036380
 
 
 En este repositorio podrá encontrar el desarrollo de la Tarea Programada 1 para el curso de Bases de Datos I.
